@@ -25,9 +25,7 @@ module Storeitsquirrel
     # Activate observers that should always be running.
     # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
     #  :paypal_import_observer
-    config.active_record.observers = :storage_request_observer, :request_message_observer,\
-      :requester_log_observer, :user_withdrawal_method_observer, :withdrawing_observer,\
-      :user_observer, :user_address_observer, :hosting_description_observer
+    # config.active_record.observers = 
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
