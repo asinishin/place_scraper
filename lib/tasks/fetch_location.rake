@@ -8,7 +8,7 @@ task :fetch_location => :environment do
     keyword: "self storage",
     multipage: true).each do |gp|
       details = ::GOOGLE_PLACES.spot(gp.reference)
-      unless Location.where('reference_key = ?', details.reference)
+      unless Location.where('reference_key = ?', details.reference).first
 	Location.create(
 	  reference_key: details.reference,
 	  name:          gp.name[0..49],
