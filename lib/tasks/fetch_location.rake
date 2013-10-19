@@ -15,9 +15,9 @@ task :fetch_location => :environment do
 	  address:       (gp.formatted_address || gp.vicinity),
 	  lat:           gp.lat,
 	  lng:           gp.lng,
-	  web_address:   (details.website || '*'),
-	  phone_number:  (details.formatted_phone_number || '-')[0..20],
-	  social_media_address: (details.url || '*')
+	  web_address:   (details.website || '*')[0..254],
+	  phone_number:  (details.formatted_phone_number || '-')[0..19],
+	  social_media_address: (details.url || '*')[0..254]
 	)
       end
   end # each spot
