@@ -13,11 +13,11 @@ task :fetch_location => :environment do
 	  reference_key: details.reference,
 	  name:          gp.name[0..49],
 	  address:       (gp.formatted_address || gp.vicinity),
-	  lat:           gp.lat,
-	  lng:           gp.lng,
-	  web_address:   (details.website || '*')[0..254],
+	  lat:           gp.lat[0..20],
+	  lng:           gp.lng[0..20],
+	  web_address:   (details.website || '*')[0..249],
 	  phone_number:  (details.formatted_phone_number || '-')[0..19],
-	  social_media_address: (details.url || '*')[0..254]
+	  social_media_address: (details.url || '*')[0..249]
 	)
       end
   end # each spot
