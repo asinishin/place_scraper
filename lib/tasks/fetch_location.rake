@@ -16,7 +16,7 @@ task :fetch_location => :environment do
 	  lat:           gp.lat,
 	  lng:           gp.lng,
 	  web_address:   (details.website || '*'),
-	  phone_number:  (details.formatted_phone_number || '-'),
+	  phone_number:  (details.formatted_phone_number || '-')[0..20],
 	  social_media_address: (details.url || '*')
 	)
       end
