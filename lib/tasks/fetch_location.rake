@@ -10,7 +10,7 @@ task :fetch_location => :environment do
 	types: "storage",
 	keyword: "self storage",
 	multipage: true).each do |gp|
-	  unless Location.where('lat = ? AND lng = ?', gp.lat.round(7), gp.lng.round(7)).first
+	  unless Location.where('lat = ? AND lng = ?', gp.lat.round(7).to_s, gp.lng.round(7).to_s).first
 	    details = ::GOOGLE_PLACES.spot(gp.reference)
 	    Location.create(
 	      name:          gp.name[0..49],
