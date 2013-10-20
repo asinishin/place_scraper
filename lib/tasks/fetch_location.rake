@@ -13,7 +13,6 @@ task :fetch_location => :environment do
 	  unless Location.where('lat = ? AND lng = ?', gp.lat.round(7), gp.lng.round(7)).first
 	    details = ::GOOGLE_PLACES.spot(gp.reference)
 	    Location.create(
-	      reference_key: details.reference,
 	      name:          gp.name[0..49],
 	      address:       (gp.formatted_address || gp.vicinity || '*'),
 	      lat:           gp.lat.round(7),

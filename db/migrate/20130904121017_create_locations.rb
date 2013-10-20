@@ -8,7 +8,6 @@ class CreateLocations < ActiveRecord::Migration
       t.string :web_address,          :null => false
       t.string :phone_number,         :null => false
       t.string :social_media_address, :null => false
-      t.text   :reference_key,        :null => false
 
       t.timestamps
     end
