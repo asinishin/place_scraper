@@ -12,9 +12,11 @@ task :fetch_location => :environment do
 	multipage: true).each do |gp|
 	  unless Location.where('lat = ? AND lng = ?', gp.lat.round(7).to_s, gp.lng.round(7).to_s).first
 	    details = ::GOOGLE_PLACES.spot(gp.reference)
+	    addr = gp.formatted_address || gp.vicinity
+	    addr = '*' if addr.blank?
 	    Location.create(
 	      name:          gp.name[0..49],
-	      address:       (gp.formatted_address || gp.vicinity || '*'),
+	      address:       addr,
 	      lat:           gp.lat.round(7),
 	      lng:           gp.lng.round(7),
 	      web_address:   (details.website || '*')[0..249],
