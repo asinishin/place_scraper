@@ -1,8 +1,8 @@
 desc "Fetch Location's"
 task :fetch_location => :environment do
   lat, lng = ENV['lat'].to_f, ENV['lng'].to_f # 43.65..43.90, -79.30..-79.55 (step:0.05 * 5)
-  5.times.each do |lat_step|
-    5.times.each do |lng_step|
+  10.times.each do |lat_step|
+    10.times.each do |lng_step|
       ::GOOGLE_PLACES.spots(
 	lat + lat_step * 0.05,
 	lng - lng_step * 0.05,
