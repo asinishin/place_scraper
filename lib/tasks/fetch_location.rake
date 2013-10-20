@@ -6,16 +6,16 @@ task :fetch_location => :environment do
       ::GOOGLE_PLACES.spots(
 	lat + lat_step * 0.05,
 	lng - lng_step * 0.05,
-	radius: ENV["radius"],
+	radius: ENV["radius"], # 4000
 	types: "storage",
 	keyword: "self storage",
 	multipage: true).each do |gp|
-	  details = ::GOOGLE_PLACES.spot(gp.reference)
-	  unless Location.where('reference_key = ?', details.reference).first
+	  unless Location.where('lat = ? AND lng = ?', gp.lat.round(7), gp.lng.round(7)).first
+	    details = ::GOOGLE_PLACES.spot(gp.reference)
 	    Location.create(
 	      reference_key: details.reference,
 	      name:          gp.name[0..49],
-	      address:       (gp.formatted_address || gp.vicinity),
+	      address:       (gp.formatted_address || gp.vicinity || '*'),
 	      lat:           gp.lat.round(7),
 	      lng:           gp.lng.round(7),
 	      web_address:   (details.website || '*')[0..249],
